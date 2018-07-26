@@ -62,7 +62,6 @@ function login(event) {
     .then((res) => {
         if (res.status == 200) {
             res.json().then((data) => {
-                console.log(data)
                 window.location = 'rides.html'
                 localStorage.setItem('access_token', data['access_token'])
             })
@@ -78,4 +77,38 @@ function login(event) {
         console.log(err)
     })
 
+}
+
+if (document.URL.contains('rides.html')) {
+    fetch('http:127.0.0.1:5000/api/v2/rides')
+    .then((res) => {
+        res.json().then((data) => {
+            if ('message' in data) {
+                alert.classList.toggle('show');
+                document.getElementById('message').textContent = data['message'];
+            }
+            else {
+                const num_rides = document.getElementById('rides_num')
+                let rides = (data.length)
+                num_rides.textContent = rides
+                let output = ``
+                data.forEach(ride => {
+                    const {id, origin, destination, date_of_ride, time, price, driver} = ride;
+                    output +=
+                    `<tr>
+                    <td class="hidden">${id}</td>
+                    <td>${origin}</td>
+                    <td>${destination}</td>
+                    <td>${date_of_ride}</td>
+                    <td>${time}</td>
+                    <td>${price}</td>
+                    <td>${driver}</td>
+                    <td><a href="ride_details.html"><button class="button--success">view</button></a></td>
+                    </tr>
+                    `
+                });
+                document.getElementById('ride_offers').innerHTML = output
+            }
+        })
+    })
 }
