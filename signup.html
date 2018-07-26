@@ -38,6 +38,9 @@
                 <p>Ride-My-Way lets you find a ride to your destination or share your drive</p>
             </div>
             <form class="form--user" id="signup_form" action="index.html" method="">
+                <div class="alert hidden">
+                    <p id="message"></p>
+                </div>
                 <div class="form_container">
                     <div class="form--user_header">
                         <h1>Sign Up Here</h1>
@@ -52,8 +55,8 @@
                         <input type="text" class="form--user_input" name="lastname" placeholder="second name" required>
                     </div>
                     <div class="form--user_group">
-                        <label class="form--user_label" for="username">Username</label>
-                        <input type="text" class="form--user_input" name="username" placeholder="pick a username" required>
+                        <label class="form--user_label" for="phonenumber">Phone Number</label>
+                        <input type="text" class="form--user_input" name="phonenumber" placeholder="phonenumber" required>
                     </div>
                     <div class="form--user_group">
                         <label class="form--user_label" for="email">Email</label>
@@ -65,7 +68,7 @@
                     </div>
                     <div class="form--user_group">
                         <label class="form--user_label" for="rpt_password">confirm password</label>
-                        <input type="password" class="form--user_input" name="rpt_password" placeholder="confirm password" required>
+                        <input type="password" class="form--user_input" name="confirmpassword" placeholder="confirm password" required>
                     </div>
                     <div class="form--user_action">
                         <button type="submit" class="button--success button--lg">Sign Up</button>
@@ -81,6 +84,7 @@
     </footer>
 
     <script src="js/scripts.js"></script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>
