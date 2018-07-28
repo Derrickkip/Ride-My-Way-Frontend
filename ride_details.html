@@ -52,47 +52,48 @@
             <table class="table" id="details_table">
                 <tbody>
                     <tr>
-                        <td class="description">Driver</td>
-                        <td class="tbl_details">Joseph Keu</td>
-                    </tr>
-                    <tr>
-                        <td class="description">Car Model</td>
-                        <td class="tbl_details">Toyota Mark X</td>
-                    </tr>
-                    <tr>
-                        <td class="description">Car Registration No</td>
-                        <td class="tbl_details">KBC 001X</td>
-                    </tr>
-                    <tr>
-                        <td class="description">No of seats</td>
-                        <td class="tbl_details">4</td>
-                    </tr>
-                    <tr>
                         <td class="description">From</td>
-                        <td class="tbl_details">Rongai</td>
+                        <td class="tbl_details" id="from"></td>
                     </tr>
                     <tr>
                         <td class="description">To</td>
-                        <td class="tbl_details">Ngong</td>
+                        <td class="tbl_details" id="destination"></td>
                     </tr>
                     <tr>
                         <td class="description">Date</td>
-                        <td class="tbl_details">Jun 17, 2018</td>
+                        <td class="tbl_details" id="date_of_ride"></td>
                     </tr>
                     <tr>
                         <td class="description">Time</td>
-                        <td class="tbl_details">08:00 am</td>
+                        <td class="tbl_details" id="time"></td>
                     </tr>
                     <tr>
+                        <td class="description">Driver</td>
+                        <td class="tbl_details" id="driver"></td>
+                    </tr>
+                    <tr>
+                        <td class="description">Car Model</td>
+                        <td class="tbl_details" id="car_model"></td>
+                    </tr>
+                    <tr>
+                        <td class="description">Car Registration No</td>
+                        <td class="tbl_details" id="reg_no"></td>
+                    </tr>
+                    <tr>
+                        <td class="description">No of seats</td>
+                        <td class="tbl_details" id="seats"></td>
+                    </tr>
+                    
+                    <tr>
                         <td class="description">Price</td>
-                        <td class="tbl_details">500 kshs</td>
+                        <td class="tbl_details" id="price"></td>
                     </tr>
                 </tbody>
             </table>
 
             <hr/>
             <div class="action_buttons">
-                <button class="btn_success"><a href="requests.html">request ride</a></button>
+                <button class="btn_success" id="request_ride"><a href="requests.html">request ride</a></button>
                 <button class="btn_danger"><a href="rides.html">Cancel</a></button>
             </div>
             </form>
@@ -103,6 +104,7 @@
     </footer>
 
     <script src="js/scripts.js"></script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>
