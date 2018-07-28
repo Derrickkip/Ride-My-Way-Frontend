@@ -170,5 +170,25 @@ if (document.URL.contains("ride_details.html")) {
     document.getElementById("reg_no").textContent = localStorage.getItem("registration");
     document.getElementById("seats").textContent = localStorage.getItem("seats");
     document.getElementById("price").textContent = localStorage.getItem("price");
+
+    document.getElementById('request_ride').addEventListener('click', request_ride);
+    document.getElementById('back').addEventListener('click', function() {
+        window.location = 'rides.html';
+    })
+}
+
+function request_ride() {
+    let token = localStorage.getItem("access_token")
+    fetch("http:127.0.0.1:5000/api/v2/rides/"+localStorage.getItem("id")+"/requests", {
+        method: "POST",
+        headers: {"Authorization": "Bearer "+ token}
+    })
+    .then((res) => {
+        res.json().then((data) => {
+            console.log(data);
+            alert.classList.toggle("show");
+            document.getElementById("message").textContent = data.message;
+        })
+    })
 }
 
