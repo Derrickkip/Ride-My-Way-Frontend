@@ -192,3 +192,53 @@ function request_ride() {
     })
 }
 
+let ride_form = document.getElementById('form_create');
+
+if (ride_form) {
+    ride_form.addEventListener('submit', offer_ride);
+}
+
+let cancel_btn = document.getElementById('cancel_create')
+
+if (cancel_btn) {
+    cancel_btn.addEventListener('click', function(){
+        window.location = "rides.html";
+    })
+}
+
+function offer_ride(event) {
+    event.preventDefault();
+    let token = localStorage.getItem("access_token");
+    let form = event.target;
+    let data = {};
+    data.origin = form.from.value;
+    data.destination = form.to.value;
+    data.date_of_ride = form.date.value;
+    data.time = form.time.value;
+    data.price = parseInt(form.price.value);
+
+    fetch("http://127.0.0.1:5000/api/v2/rides", {
+        method: "POST",
+        headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"},
+        body: JSON.stringify(data)
+    })
+    .then((res) => {
+        if (res.status == 201) {
+            res.json().then((data) => {
+                console.log(data);
+                alert.classList.toggle("show");
+                document.getElementById("message").textContent = data.message;
+                window.location = "rides.html"
+            })
+        }
+        else if (res.status == 401) {
+            window.location = "index.html"
+        }
+        else {
+            res.json().then((data) => {
+                alert.classList.toggle("show");
+                document.getElementById("message").textContent = data.message;
+            })
+        }
+    })
+}
