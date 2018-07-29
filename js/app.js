@@ -5,6 +5,7 @@ if (signupform) {
 }
 
 const alert = document.querySelector(".alert");
+const alertmodal = document.querySelector(".alertmodal");
 
 function signup(event) {
     event.preventDefault();
@@ -238,6 +239,42 @@ function offer_ride(event) {
             res.json().then((data) => {
                 alert.classList.toggle("show");
                 document.getElementById("message").textContent = data.message;
+            })
+        }
+    })
+}
+
+let car_form = document.getElementById('add_car_form');
+
+if (car_form) {
+    car_form.addEventListener('submit', add_car)
+}
+
+function add_car(event) {
+    event.preventDefault();
+    let token = localStorage.getItem("access_token");
+    let form = event.target;
+    let data = {};
+    data.car_model = form.car_model.value;
+    data.registration = form.registration.value;
+    data.seats = parseInt(form.seats.value);
+
+    fetch("http:127.0.0.1:5000/api/v2/cars", {
+        method: "POST",
+        headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"},
+        body: JSON.stringify(data)
+    })
+    .then((res) => {
+        if (res.status == 201) {
+            res.json().then((data) => {
+                window.location = "create_ride.html"
+            })
+        }
+        else {
+            res.json().then((data) => {
+                console.log(data);
+                alertmodal.classList.toggle("show");
+                document.getElementById("modalmessage").textContent = data.message;
             })
         }
     })

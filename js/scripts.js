@@ -73,3 +73,10 @@ window.onclick = function() {
         }
     }
 }
+const car_button = document.getElementById('add_car');
+
+if (car_button) {
+    car_button.addEventListener('click', function(event) {
+        document.getElementById('add_car_modal').classList.toggle('modal__show');
+    })
+}
