@@ -138,7 +138,7 @@ function view_details(event) {
         else {
         res.json().then((data) => {
             console.log(data["ride"])
-            const {id, driver, phone_number, origin, destination, date_of_ride, time, price, car_model, registration, seats } = data.ride;
+            const {id, driver, phone_number, origin, destination, date_of_ride, time, price, car_model, registration, seats, requests } = data.ride;
             localStorage.setItem("id", id);
             localStorage.setItem("driver", driver);
             localStorage.setItem("phone_number", phone_number);
@@ -150,6 +150,7 @@ function view_details(event) {
             localStorage.setItem("car_model", car_model);
             localStorage.setItem("registration", registration);
             localStorage.setItem("seats", seats)
+            localStorage.setItem("requests", requests)
             window.location = "ride_details.html";
 
         })
@@ -170,6 +171,7 @@ if (document.URL.contains("ride_details.html")) {
     document.getElementById("reg_no").textContent = localStorage.getItem("registration");
     document.getElementById("seats").textContent = localStorage.getItem("seats");
     document.getElementById("price").textContent = localStorage.getItem("price");
+    document.getElementById("requests").textContent = localStorage.getItem("requests");
 
     document.getElementById('request_ride').addEventListener('click', request_ride);
     document.getElementById('back').addEventListener('click', function() {
