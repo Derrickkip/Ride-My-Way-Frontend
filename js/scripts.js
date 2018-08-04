@@ -2,6 +2,63 @@
 const nav_toggler = document.querySelector('.jsnavbar__toggle');
 const nav_links = document.querySelector('.jsnavbar__links');
 
+const modal = document.querySelectorAll('.modal');
+
+const edit_user = document.querySelector('#edit_user');
+
+const edit_car = document.querySelector('#edit_car');
+
+const user_modal = document.querySelector('#user_modal');
+
+const car_modal = document.querySelector('#car_modal');
+
+const close = document.querySelectorAll('.close');
+
+const edit_ride = document.getElementById('update_ride');
+
+const ride_modal = document.querySelector('#ride_modal');
+
+const add_car =  document.getElementById('add_car');
+
+const add_car_modal = document.querySelector('#add_car_modal');
+
+
+if (edit_user) {
+
+    edit_user.addEventListener('click', show_user_modal);
+}
+
+if (edit_car) {
+
+    edit_car.addEventListener('click', show_car_modal);
+
+}
+
+if (edit_ride) {
+    edit_ride.addEventListener('click', show_ride_modal);
+}
+
+if (add_car) {
+    add_car.addEventListener('click', show_add_car_modal);
+}
+
+
+
+if (close) {
+
+    for (let i = 0; i < close.length; i++) {
+        close[i].addEventListener('click', close_modal);
+    }
+}
+
+window.onclick = function(event) {
+    for (let i = 0; i < modal.length; i++) {
+        if (event.target == modal[i]) {
+            modal[i].classList.toggle('modal__show');
+        }
+    }
+}
+
 function show_nav() {
     nav_links.classList.toggle('nav_show');
 }
@@ -33,12 +90,12 @@ function show_ride_modal(event) {
     ride_modal.classList.toggle('modal__show');
     let td = document.getElementsByTagName('td');
     let edit_form = document.getElementById('edit_ride_form');
-    edit_form.ride_id.value = td[0].innerHTML;
-    edit_form.origin.value = td[1].innerHTML;
-    edit_form.destination.value = td[2].innerHTML;
-    edit_form.date_of_ride.value = td[3].innerHTML;
-    edit_form.time.value = td[4].innerHTML;
-    edit_form.price.value = td[5].innerHTML;
+    edit_form.ride_id.value = td[0].childNodes[0].nodeValue;
+    edit_form.origin.value = td[1].childNodes[0].nodeValue;
+    edit_form.destination.value = td[2].childNodes[0].nodeValue;
+    edit_form.date_of_ride.value = td[3].childNodes[0].nodeValue;
+    edit_form.time.value = td[4].childNodes[0].nodeValue;
+    edit_form.price.value = td[5].childNodes[0].nodeValue;
 }
 
 function show_request_modal(event) {
@@ -132,62 +189,5 @@ const acc = document.querySelectorAll('.js_accordion');
 if (acc) {
     for (let i = 0; i < acc.length; i++) {
         acc[i].addEventListener('click', show_hidden);
-    }
-}
-
-const modal = document.querySelectorAll('.modal');
-
-const edit_user = document.querySelector('#edit_user');
-
-const edit_car = document.querySelector('#edit_car');
-
-const user_modal = document.querySelector('#user_modal');
-
-const car_modal = document.querySelector('#car_modal');
-
-const close = document.querySelectorAll('.close');
-
-const edit_ride = document.getElementById('update_ride');
-
-const ride_modal = document.querySelector('#ride_modal');
-
-const add_car =  document.getElementById('add_car')
-
-const add_car_modal = document.querySelector('#add_car_modal')
-
-
-if (edit_user) {
-
-    edit_user.addEventListener('click', show_user_modal);
-}
-
-if (edit_car) {
-
-    edit_car.addEventListener('click', show_car_modal);
-
-}
-
-if (edit_ride) {
-    edit_ride.addEventListener('click', show_ride_modal);
-}
-
-if (add_car) {
-    add_car.addEventListener('click', show_add_car_modal)
-}
-
-
-
-if (close) {
-
-    for (let i = 0; i < close.length; i++) {
-        close[i].addEventListener('click', close_modal);
-    }
-}
-
-window.onclick = function(event) {
-    for (let i = 0; i < modal.length; i++) {
-        if (event.target == modal[i]) {
-            modal[i].classList.toggle('modal__show');
-        }
     }
 }

@@ -315,7 +315,6 @@ if (document.URL.contains('rides_offered.html')) {
             let output = ``
             data.forEach((ride) => {
                 const {id, origin, destination, date_of_ride, time, price, requests} = ride
-
                 output +=
                 `
                 <tr>
@@ -455,23 +454,25 @@ function delete_ride(event) {
     })
 }
 
-let update_ride_form = document.getElementById('update_ride')
+let update_ride_form = document.getElementById('edit_ride_form')
 
 if (update_ride_form) {
-    update_ride_form.addEventListener('click', update_ride)
+    update_ride_form.addEventListener('submit', update_ride)
 }
 
 function update_ride(event) {
     event.preventDefault()
     let token = localStorage.getItem("access_token");
-    let form = event.target.parentNode.parentNode;
+    let form = event.target;
+    console.log(form)
     let id = form.ride_id.value;
-    let data = {}
-    data.origin = form.origin.innerHTML;
+    let data = {};
+    data.origin = form.origin.value;
     data.destination = form.destination.value;
     data.date_of_ride = form.date_of_ride.value;
     data.time = form.time.value;
     data.price = parseInt(form.price.value);
+    console.log(data)
 
     fetch("http://127.0.0.1:5000/api/v2/rides/"+id, {
         method: "PUT",
@@ -480,7 +481,8 @@ function update_ride(event) {
     })
     .then((res) => {
         res.json().then((data) => {
-            console.log(data)
+            alert.classList.toggle("show");
+            document.getElementById("message").textContent = data.message;
         })
     })
 
