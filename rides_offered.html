@@ -44,6 +44,9 @@
     </nav>
     <div class="section">
         <div class="rides_taken">
+            <div class="alert hidden">
+                <p id="message"></p>
+            </div>
             <div class="taken_header">
                 <h2 class="primary__color">Rides Offered</h2>
             </div>
@@ -61,87 +64,78 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>Embakasi</td>
-                        <td>Ngong</td>
-                        <td class="date">June 3, 2018</td>
-                        <td class="red_bg">08:00 am</td>
-                        <td>60 kshs</td>
-                        <td>5</td>
-                        <td><a href="reviews.html"><button class="button--success">review</button></a></td>
-                        <td><button class="button--danger">Delete</button></td>
-
-                    </tr>
-                    <tr>
-                        <td>Ngong</td>
-                        <td>Rongai</td>
-                        <td class="date">June 1, 2018</td>
-                        <td class="red_bg">08:00 am</td>
-                        <td>100 kshs</td>
-                        <td>6</td>
-                        <td><a href="reviews.html"><button class="button--success">review</button></a></td>
-                        <td><button class="button--danger">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>Githurai</td>
-                        <td>Thika</td>
-                        <td class="date">June 10, 2018</td>
-                        <td class="red_bg">10:00 am</td>
-                        <td>70 kshs</td>
-                        <td>3</td>
-                        <td><a href="reviews.html"><button class="button--success">review</button></a></td>
-                        <td><button class="button--danger">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>Lang'ata</td>
-                        <td>South B</td>
-                        <td class="date">June 10, 2018</td>
-                        <td class="red_bg">03:00 pm</td>
-                        <td>50 kshs</td>
-                        <td>2</td>
-                        <td><a href="reviews.html"><button class="button--success">review</button></a></td>
-                        <td><button class="button--danger">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>Nairobi</td>
-                        <td>Kitale</td>
-                        <td class="date">March 12, 2018</td>
-                        <td class="red_bg">08:00 am</td>
-                        <td>600 kshs</td>
-                        <td>9</td>
-                        <td><a href="reviews.html"><button class="button--success">review</button></a></td>
-                        <td><button class="button--danger">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>Kitale</td>
-                        <td>Nairobi</td>
-                        <td class="date">March 10, 2018</td>
-                        <td class="red_bg">08:00 am</td>
-                        <td>600 kshs</td>
-                        <td>1</td>
-                        <td><a href="reviews.html"><button class="button--success">review</button></a></td>
-                        <td><button class="button--danger">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>Kinoo</td>
-                        <td>Westlands</td>
-                        <td class="date">Feb 14, 2018</td>
-                        <td class="red_bg">12:00 pm</td>
-                        <td>20 kshs</td>
-                        <td>0</td>
-                        <td><a href="reviews.html"><button class="button--success">review</button></a></td>
-                        <td><button class="button--danger">Delete</button></td>
-                    </tr>
+                <tbody id="user_rides">
+            
                 </tbody>
             </table>
         </div>
     </div>
+    <div class="modal" id="ride_modal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h3 class="primary__color">Update Ride</h3>
+                <span class="close">&times;</span>
+            </div>
+            <hr/>
+            <form class="form--edit" id="edit_ride_form">
+                <div class="alert hidden">
+                    <p id="message"></p>
+                </div>
+                <div class="modal__form-group">
+                    <label class="edit--modal_label" for="ride_id">Id</label>
+                    <input class="edit--modal_input" type="text" name="ride_id" value="" readonly>
+                </div>
+                <div class="modal__form-group">
+                    <label class="edit--modal_label" for="origin">From</label>
+                    <input class="edit--modal_input" type="text" name="origin" value="" required>
+                </div>
+                <div class="modal__form-group">
+                    <label class="edit--modal_label" for="destination">Destination</label>
+                    <input class="edit--modal_input" type="text" name="destination" value="" required>
+                </div>
+                <div class="modal__form-group">
+                    <label class="edit--modal_label" for="date_of_ride">Date</label>
+                    <input class="edit--modal_input" type="text" name="date_of_ride" value="" required>
+                </div>
+                <div class="modal__form-group">
+                    <label class="edit--modal_label" for="time">Time</label>
+                    <input class="edit--modal_input" type="text" name="time" value="">
+                </div>
+                <div class="modal__form-group">
+                    <label class="edit--modal_label" for="price">Price</label>
+                    <input class="edit--modal_input" type="text" name="price" value="">
+                </div>
+                <hr/>
+                <div class="modal__action">
+                    <button class="button--success" type="submit" id="update_ride">Update Ride</button>
+                    <button class="button--danger">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal" id="requests_modal">
+            <div class="modal__content">
+                <div class="alert hidden">
+                    <p id="message"></p>
+                </div>
+                <div class="modal__header">
+                    <h3 class="primary__color">Requests</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <hr/>
+                <div class="request__body">
+                    <ul class="request__items" id="request_items">
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
     <footer class="footer--main">
         <p>Derrick &copy; 2018</p>
     </footer>
 
     <script src="js/scripts.js"></script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>
