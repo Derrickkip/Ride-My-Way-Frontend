@@ -51,26 +51,22 @@
                     </div>
                     <div class="profile__details">
                         <div class="user__details">
-                            <form class="form--details">
+                            <form class="form--details" id="user_details">
                                 <div class="details__form-group">
                                     <label class="form--details_label" for="firstname">First Name</label>
-                                    <input class="form--details_input" type="text" name="firstname" value="Joseph" readonly>
+                                    <input class="form--details_input" type="text" name="firstname" readonly>
                                 </div>
                                 <div class="details__form-group">
-                                    <label class="form--details_label" for="secondname">Second Name</label>
-                                    <input class="form--details_input" type="text" name="secondname" value="Keu" readonly>
+                                    <label class="form--details_label" for="lastname">Last Name</label>
+                                    <input class="form--details_input" type="text" name="lastname" readonly>
                                 </div>
                                 <div class="details__form-group">
                                     <label class="form--details_label" for="email">Email</label>
-                                    <input class="form--details_input" type="text" name="email" value="Jkeu@mail.com" readonly>
+                                    <input class="form--details_input" type="text" name="email" readonly>
                                 </div>
                                 <div class="details__form-group">
-                                    <label class="form--details_label" for="pnumber">Phone Number</label>
-                                    <input class="form--details_input" type="text" name="pnumber" value="07323133443" readonly>
-                                </div>
-                                <div class="details__form-group">
-                                    <label class="form--details_label" for="dlnumber">Driving Licence</label>
-                                    <input class="form--details_input" type="text" name="dlnumber" value="dl07323133443" readonly>
+                                    <label class="form--details_label" for="phone_number">Phone Number</label>
+                                    <input class="form--details_input" type="text" name="phone_number" readonly>
                                 </div>
                             </form>
                         </div>
@@ -81,18 +77,18 @@
                         <h3 class="primary__color">Car Details</h3><span class="fa fa-edit edit" id="edit_car"></span>
                     </div>
                     <div class="car__details">
-                        <form class="form--details">
+                        <form class="form--details" id="car_details">
                             <div class="details__form-group">
-                                <label class="form--details_label" for="model">Model</label>
-                                <input class="form--details_input" type="text" name="model" value="Toyota Mark X" readonly>
+                                <label class="form--details_label" for="car_model">Model</label>
+                                <input class="form--details_input" type="text" name="car_model" id="car_model"readonly>
                             </div>
                             <div class="details__form-group">
-                                <label class="form--details_label" for="nplate">Number Plate</label>
-                                <input class="form--details_input" type="text" name="nplate" value="KBC 001X" readonly>
+                                <label class="form--details_label" for="registration">Registration</label>
+                                <input class="form--details_input" type="text" name="registration" id="registration" readonly>
                             </div>
                             <div class="details__form-group">
-                                <label class="form--details_label" for="seats">No of seats</label>
-                                <input class="form--details_input" type="text" name="seats" value="4" readonly>
+                                <label class="form--details_label" for="seats">Seats</label>
+                                <input class="form--details_input" type="text" name="seats" id="seats" readonly>
                             </div>
                         </form>
 
@@ -105,6 +101,20 @@
                         <h3 class="primary__color">Ride History</h3>
                     </div>
                     <hr/>
+                    <div class="ride__given">
+                        <a href="rides_offered.html">
+                            <div class="ride__title">
+                                <h4>Rides Offered</h4><span class="title__number" id="rides_number"></span>
+                            </div>
+                        </a>
+                        <div class="ride__details">
+                            <ul class="ride__list" id="rides_list">
+                                <li class="ride__item"><span>Embakasi to Ngong</span><span class="date">Jan 3, 2018</span></li>
+                                <li class="ride__item"><span>Ngong to Rongai</span><span class="date">Jan 1, 2018</span></li>
+                            </ul>
+                            <a href="rides_offered.html"><button class="button--more">view more</button></a>
+                        </div>
+                    </div>
                     <div class="ride__taken">
                         <a href="rides_taken.html">
                             <div class="ride__title">
@@ -119,41 +129,6 @@
                             <a href="rides_taken.html"><button class="button--more">view more</button></a>
                         </div>
                     </div>
-                    <div class="ride__given">
-                        <a href="rides_offered.html">
-                            <div class="ride__title">
-                                <h4>Rides Given</h4><span class="title__number">7</span>
-                            </div>
-                        </a>
-                        <div class="ride__details">
-                            <ul class="ride__list">
-                                <li class="ride__item"><span>Embakasi to Ngong</span><span class="date">Jan 3, 2018</span></li>
-                                <li class="ride__item"><span>Ngong to Rongai</span><span class="date">Jan 1, 2018</span></li>
-                            </ul>
-                            <a href="rides_offered.html"><button class="button--more">view more</button></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="requests__section">
-                    <div class="requests__title">
-                        <h3 class="primary__color">Requests</h3>
-                    </div>
-                    <hr/>
-                    <div class="requests__body">
-                        <div class="requests__item">
-                            <p>Total requests</p><span class="primary">15</span>
-                        </div>
-                        <div class="requests__item">
-                            <p>Accepted requests</p><span class="success">8</span>
-                        </div>
-                        <div class="requests__item">
-                            <p>Pending requests</p><span class="pending">4</span>
-                        </div>
-                        <div class="requests__item">
-                            <p>Rejected requests</p><span class="danger">3</span>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -165,30 +140,29 @@
                 <span class="close">&times;</span>
             </div>
             <hr/>
-            <form class="form--edit">
-                <div class="modal__form-group">
-                    <label class="edit--modal_label" for="firstname">First Name</label>
-                    <input class="edit--modal_input" type="text" name="firstname" value="Joseph" required>
+            <form class="form--edit" id="edit_user_form">
+                <div class="alert hidden">
+                    <p id="message"></p>
                 </div>
                 <div class="modal__form-group">
-                    <label class="edit--modal_label" for="secondname">Second Name</label>
-                    <input class="edit--modal_input" type="text" name="secondname" value="Keu" required>
+                    <label class="edit--modal_label" for="firstname">First Name</label>
+                    <input class="edit--modal_input" type="text" name="firstname" required>
+                </div>
+                <div class="modal__form-group">
+                    <label class="edit--modal_label" for="lastname">Last Name</label>
+                    <input class="edit--modal_input" type="text" name="lastname" required>
                 </div>
                 <div class="modal__form-group">
                     <label class="edit--modal_label" for="email">Email</label>
-                    <input class="edit--modal_input" type="email" name="email" value="Jkeu@mail.com" required>
+                    <input class="edit--modal_input" type="email" name="email" required>
                 </div>
                 <div class="modal__form-group">
-                    <label class="edit--modal_label" for="pnumber">Phone Number</label>
-                    <input class="edit--modal_input" type="text" name="pnumber" value="07323133443">
-                </div>
-                <div class="modal__form-group">
-                    <label class="edit--modal_label" for="dlnumber">Driver Licence</label>
-                    <input class="edit--modal_input" type="text" name="dlnumber" value="dl07323133443">
+                    <label class="edit--modal_label" for="phone_number">Phone Number</label>
+                    <input class="edit--modal_input" type="text" name="phone_number">
                 </div>
                 <hr/>
                 <div class="modal__action">
-                    <button class="button--success">Update Profile</button>
+                    <button class="button--success" typ>Update Profile</button>
                     <button class="button--danger">Cancel</button>
                 </div>
             </form>
@@ -201,22 +175,25 @@
                 <span class="close">&times;</span>
             </div>
             <hr/>
-            <form class="form--edit">
-                <div class="modal__form-group">
-                    <label class="edit--modal_label" for="model">Model</label>
-                    <input class="edit--modal_input" type="text" name="model" value="Toyota Mark X" required>
+            <form class="form--edit" id="edit_car_form">
+                <div class="alert hidden">
+                    <p id="message"></p>
                 </div>
                 <div class="modal__form-group">
-                    <label class="edit--modal_label" for="nplate">Number Plate</label>
-                    <input class="edit--modal_input" type="text" name="nplate" value="KBC 001X" required>
+                    <label class="edit--modal_label" for="car_model">Car_Model</label>
+                    <input class="edit--modal_input" type="text" name="car_model" required>
                 </div>
                 <div class="modal__form-group">
-                    <label class="edit--modal_label" for="seats">No of seats</label>
-                    <input class="edit--modal_input" type="text" name="seats" value="4" required>
+                    <label class="edit--modal_label" for="registration">Registration</label>
+                    <input class="edit--modal_input" type="text" name="registration" required>
+                </div>
+                <div class="modal__form-group">
+                    <label class="edit--modal_label" for="seats">Seats</label>
+                    <input class="edit--modal_input" type="text" name="seats" required>
                 </div>
                 <hr/>
                 <div class="modal__action">
-                    <button class="button--success">Update details</button>
+                    <button class="button--success" type="submit">Update details</button>
                     <button class="button--danger">Cancel</button>
                 </div>
             </form>
@@ -227,6 +204,7 @@
     </footer>
 
     <script src="js/scripts.js"></script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>
