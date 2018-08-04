@@ -242,3 +242,244 @@ function offer_ride(event) {
         }
     })
 }
+
+if (document.URL.contains("profile.html")) {
+    let token = localStorage.getItem("access_token")
+    fetch("http://127.0.0.1:5000/api/v2/cars", {
+        headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"}
+    })
+    .then((res) => {
+        if (res.status == 200) {
+            res.json().then((data) =>  {
+            let car = data.car
+            let form = document.getElementById('car_details')
+            form.car_model.value = car.car_model
+            form.registration.value = car.registration
+            form.seats.value = car.seats
+            })
+
+        }
+        else if (res.status == 404) {
+
+        }
+    })
+
+    fetch("http://127.0.0.1:5000/api/v2/users", {
+        headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"}
+    })
+    .then((res) => {
+        res.json().then((data) => {
+            let form_user = document.getElementById("user_details")
+            form_user.firstname.value = data.first_name
+            form_user.lastname.value = data.last_name
+            form_user.email.value = data.email
+            form_user.phone_number.value = data.phone_number
+        })
+    })
+
+    fetch("http://127.0.0.1:5000/api/v2/user/rides", {
+        headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"}
+    })
+    .then((res) => {
+        res.json().then((data) => {
+            document.getElementById('rides_number').textContent = data.length
+            let output = ``
+            data.forEach((ride) => {
+                const {id, origin, destination, date_of_ride, time, price, requests} = ride
+            output +=
+                `
+                <li class="ride__item"><span>${origin} to ${destination}</span><span class="date">${date_of_ride}</span></li>
+                `
+            })
+            document.getElementById('rides_list').innerHTML = output
+        })
+    })
+    let form_update_car = document.getElementById('edit_car_form')
+
+    form_update_car.addEventListener('submit', update_car)
+
+    let form_update_user = document.getElementById('edit_user_form')
+
+    form_update_user.addEventListener('submit', update_user)
+}
+
+if (document.URL.contains('rides_offered.html')) {
+    let token = localStorage.getItem("access_token")
+    fetch("http://127.0.0.1:5000/api/v2/user/rides", {
+        headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"}
+    })
+    .then((res) => {
+        res.json().then((data) => {
+            let output = ``
+            data.forEach((ride) => {
+                const {id, origin, destination, date_of_ride, time, price, requests} = ride
+
+                output +=
+                `
+                <tr>
+                <td class="hidden">${id}</td>
+                <td>${origin}</td>
+                <td>${destination}</td>
+                <td class="date">${date_of_ride}</td>
+                <td class="red_bg">${time}</td>
+                <td>${price}</td>
+                <td class="ride_requests">${requests}<button class="button--success view_requests" data-id="${id}">view</button></td>
+                <td><button class="button--success" id="update_ride" data-id="${id}">Update</button></td>
+                <td><button class="button--danger" id="delete_ride" data-id="${id}">Delete</button></td>
+                </tr>
+                `
+            })
+        document.getElementById('user_rides').innerHTML = output;
+
+        const requests_modal = document.querySelector('#requests_modal')
+
+        let view_requests = document.querySelectorAll('.view_requests')
+
+        if (view_requests) {
+            for (let i=0; i< view_requests.length; i++) {
+                view_requests[i].addEventListener('click', show_request_modal)
+            }
+        }
+
+        let delete_button = document.querySelectorAll('#delete_ride')
+        if (delete_button) {
+            for (let i=0; i < delete_button.length; i++) {
+            delete_button[i].addEventListener('click', delete_ride)
+            }
+        }
+
+        let update_button = document.querySelectorAll('#update_ride')
+        if (update_button) {
+            for (let i=0; i<update_button.length; i++){
+            update_button[i].addEventListener('click', show_ride_modal)
+            }
+        }
+        })
+    })
+
+}
+
+let add_car_form = document.getElementById('add_car_form')
+
+if (add_car_form) {
+    add_car_form.addEventListener('submit', add_car_details)
+}
+
+function add_car_details(event){
+    event.preventDefault();
+    let token = localStorage.getItem("access_token")
+    let form = event.target;
+    let data = {};
+    data.car_model = form.car_model.value;
+    data.registration = form.registration.value;
+    data.seats = parseInt(form.seats.value);
+    console.log(data)
+    fetch("http://127.0.0.1:5000/api/v2/cars", {
+        method: "POST",
+        headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"},
+        body: JSON.stringify(data)
+    })
+    .then((res) => {
+        res.json().then((data) => {
+            alert.classList.toggle("show");
+            document.getElementById("message").textContent = data.message;
+        })
+    })
+}
+
+function update_car(event){
+    let token = localStorage.getItem("access_token")
+    event.preventDefault()
+    let form = event.target
+    let data = {}
+    data.car_model = form.car_model.value
+    data.registration = form.registration.value
+    data.seats = parseInt(form.seats.value)
+
+    fetch("http://127.0.0.1:5000/api/v2/cars", {
+        method: "PUT",
+        headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"},
+        body: JSON.stringify(data)
+    })
+    .then((res) => {
+        res.json().then((data) => {
+            alert.classList.toggle("show");
+            document.getElementById("message").textContent = data.message;
+            window.location = "profile.html"
+        })
+    })
+}
+
+function update_user(event) {
+    let token = localStorage.getItem("access_token")
+    event.preventDefault()
+    let form = event.target;
+    let data = {}
+    data.first_name = form.firstname.value
+    data.last_name = form.lastname.value
+    data.email = form.email.value
+    data.phone_number = form.phone_number.value
+
+    fetch("http://127.0.0.1:5000/api/v2/users", {
+        method: "PUT",
+        headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"},
+        body: JSON.stringify(data)
+    })
+    .then((res) => {
+        res.json().then((data) => {
+            alert.classList.toggle("show");
+            document.getElementById("message").textContent = data.message;
+            window.location = "profile.html"
+        })
+    })
+}
+
+function delete_ride(event) {
+    let token = localStorage.getItem("access_token")
+    let ride = event.target;
+    let ride_id = ride.getAttribute("data-id")
+    console.log(ride_id)
+
+    fetch("http://127.0.0.1:5000/api/v2/rides/"+ride_id, {
+        method: "DELETE",
+        headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"},
+    })
+    .then((res) => {
+        res.json().then((data) => {
+            alert.classList.toggle("show");
+            document.getElementById("message").textContent = data.message;
+            window.location = "rides_offered.html"
+        })
+    })
+}
+
+let update_ride_form = document.getElementById('update_ride')
+
+if (update_ride_form) {
+    update_ride_form.addEventListener('click', update_ride)
+}
+
+function update_ride(event) {
+    event.preventDefault()
+    let token = localStorage.getItem("access_token");
+    let form = event.target.parentNode.parentNode;
+    let id = form.ride_id.value;
+    let data = {}
+    data.origin = form.origin.innerHTML;
+    data.destination = form.destination.value;
+    data.date_of_ride = form.date_of_ride.value;
+    data.time = form.time.value;
+    data.price = parseInt(form.price.value);
+
+    fetch("http://127.0.0.1:5000/api/v2/rides/"+id, {
+        method: "PUT",
+        headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"},
+        body: JSON.stringify(data)
+    })
+    .then((res) => {
+        res.json().then((data) => {
+            console.log(data)
+        })
+    })
+
+}
