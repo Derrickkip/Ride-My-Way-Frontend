@@ -53,7 +53,7 @@
                     <h1>Offer Ride</h1>
                 </div>
                 <div class="align_center">
-                    <button class="btn_success">Update Car</button>
+                    <button class="btn_success" id="add_car">Update Car</button>
                 </div>
             </header>
             <hr class="divider" />
@@ -90,6 +90,37 @@
             </form>
         </div>
     </section>
+    <div class="modal" id="add_car_modal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h3 class="primary__color">Add Car</h3>
+                <span class="close">&times;</span>
+            </div>
+            <hr/>
+            <form class="form--edit" id="add_car_form">
+                <div class="alert hidden">
+                    <p id="message"></p>
+                </div>
+                <div class="modal__form-group">
+                    <label class="edit--modal_label" for="car_model">Car_Model</label>
+                    <input class="edit--modal_input" type="text" name="car_model" required>
+                </div>
+                <div class="modal__form-group">
+                    <label class="edit--modal_label" for="registration">Registration</label>
+                    <input class="edit--modal_input" type="text" name="registration" required>
+                </div>
+                <div class="modal__form-group">
+                    <label class="edit--modal_label" for="seats">Seats</label>
+                    <input class="edit--modal_input" type="text" name="seats" required>
+                </div>
+                <hr/>
+                <div class="modal__action">
+                    <button class="button--success" type="submit">Add Car</button>
+                    <button class="button--danger">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <footer class="footer--main">
         <p>Derrick &copy; 2018</p>
     </footer>
