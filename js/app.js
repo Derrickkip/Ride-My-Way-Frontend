@@ -190,6 +190,7 @@ function request_ride() {
             console.log(data);
             alert.classList.toggle("show");
             document.getElementById("message").textContent = data.message;
+            window.location = 'rides.html';
         })
     })
 }
@@ -384,6 +385,7 @@ function add_car_details(event){
         res.json().then((data) => {
             alert.classList.toggle("show");
             document.getElementById("message").textContent = data.message;
+            window.location = 'create_ride.html'
         })
     })
 }
