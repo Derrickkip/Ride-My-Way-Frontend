@@ -611,12 +611,19 @@ tr:last-child {
     color: #008000;
 }
 
-.requests__item {
+.requests__items {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid grey;
 }
+
+.ride_requests {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 
 .modal {
     display: none;

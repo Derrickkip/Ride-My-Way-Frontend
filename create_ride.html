@@ -21,10 +21,6 @@
             </div>
             <div class="jsnavbar__links">
                 <div class="navbar__link">
-                    <a href="requests.html">Requests</a>
-                    <hr class="navbar__separator" />
-                </div>
-                <div class="navbar__link">
                     <a href="create_ride.html">Create Ride</a>
                     <hr class="navbar__separator" />
                 </div>
@@ -53,7 +49,7 @@
                     <h1>Offer Ride</h1>
                 </div>
                 <div class="align_center">
-                    <button class="btn_success" id="add_car">Add Car</button>
+                  <button class="btn_success" id="add_car">Add Car</button>
                 </div>
             </header>
             <hr class="divider" />
@@ -92,17 +88,17 @@
     </section>
     <div class="modal" id="add_car_modal">
         <div class="modal__content">
-            <div class="alertmodal hidden">
-                <p id="modalmessage"></p>
-            </div>
             <div class="modal__header">
-                <h3 class="primary__color">Add car details</h3>
+                <h3 class="primary__color">Add Car</h3>
                 <span class="close">&times;</span>
             </div>
             <hr/>
             <form class="form--edit" id="add_car_form">
+                <div class="alert hidden">
+                    <p id="message"></p>
+                </div>
                 <div class="modal__form-group">
-                    <label class="edit--modal_label" for="car_model">Model</label>
+                    <label class="edit--modal_label" for="car_model">Car_Model</label>
                     <input class="edit--modal_input" type="text" name="car_model" required>
                 </div>
                 <div class="modal__form-group">
@@ -110,12 +106,12 @@
                     <input class="edit--modal_input" type="text" name="registration" required>
                 </div>
                 <div class="modal__form-group">
-                    <label class="edit--modal_label" for="seats">No of seats</label>
-                    <input class="edit--modal_input" type="text" name="seats"required>
+                    <label class="edit--modal_label" for="seats">Seats</label>
+                    <input class="edit--modal_input" type="text" name="seats" required>
                 </div>
                 <hr/>
                 <div class="modal__action">
-                    <button class="button--success" id="submit_car">Add Car</button>
+                    <button class="button--success" type="submit">Add Car</button>
                     <button class="button--danger">Cancel</button>
                 </div>
             </form>
