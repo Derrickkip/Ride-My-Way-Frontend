@@ -18,7 +18,7 @@ function signup(event) {
     data.password = form.password.value;
     data.confirm_password = form.confirmpassword.value;
 
-    fetch("http:127.0.0.1:5000/api/v2/auth/signup", {
+    fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/auth/signup", {
         method: "POST",
         headers: {"Content-type": "application/json"},
         body: JSON.stringify(data)
@@ -55,7 +55,7 @@ function login(event) {
     data.email = form.email.value;
     data.password = form.password.value;
 
-    fetch("http:127.0.0.1:5000/api/v2/auth/login", {
+    fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/auth/login", {
         method: "POST",
         headers: {"Content-type": "application/json"},
         body: JSON.stringify(data)
@@ -81,7 +81,7 @@ function login(event) {
 }
 
 if (document.URL.contains("rides.html")) {
-    fetch("http:127.0.0.1:5000/api/v2/rides")
+    fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/rides")
     .then((res) => {
         res.json().then((data) => {
             if ("message" in data) {
@@ -126,7 +126,7 @@ function view_details(event) {
     let ride = event.target.parentNode;
     let id = ride.getAttribute("data-id")
 
-    fetch("http:127.0.0.1:5000/api/v2/rides/"+id, {
+    fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/rides/"+id, {
         headers: {"Authorization": "Bearer "+ token}
     })
     .then((res) => {
@@ -182,7 +182,7 @@ if (document.URL.contains("ride_details.html")) {
 
 function request_ride() {
     let token = localStorage.getItem("access_token")
-    fetch("http:127.0.0.1:5000/api/v2/rides/"+localStorage.getItem("id")+"/requests", {
+    fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/rides/"+localStorage.getItem("id")+"/requests", {
         method: "POST",
         headers: {"Authorization": "Bearer "+ token}
     })
@@ -221,7 +221,7 @@ function offer_ride(event) {
     data.time = form.time.value;
     data.price = parseInt(form.price.value);
 
-    fetch("http://127.0.0.1:5000/api/v2/rides", {
+    fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/rides", {
         method: "POST",
         headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"},
         body: JSON.stringify(data)
@@ -249,7 +249,7 @@ function offer_ride(event) {
 
 if (document.URL.contains("profile.html")) {
     let token = localStorage.getItem("access_token")
-    fetch("http://127.0.0.1:5000/api/v2/cars", {
+    fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/cars", {
         headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"}
     })
     .then((res) => {
@@ -268,7 +268,7 @@ if (document.URL.contains("profile.html")) {
         }
     })
 
-    fetch("http://127.0.0.1:5000/api/v2/users", {
+    fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/users", {
         headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"}
     })
     .then((res) => {
@@ -281,7 +281,7 @@ if (document.URL.contains("profile.html")) {
         })
     })
 
-    fetch("http://127.0.0.1:5000/api/v2/user/rides", {
+    fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/user/rides", {
         headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"}
     })
     .then((res) => {
@@ -309,7 +309,7 @@ if (document.URL.contains("profile.html")) {
 
 if (document.URL.contains('rides_offered.html')) {
     let token = localStorage.getItem("access_token")
-    fetch("http://127.0.0.1:5000/api/v2/user/rides", {
+    fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/user/rides", {
         headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"}
     })
     .then((res) => {
@@ -377,7 +377,7 @@ function add_car_details(event){
     data.registration = form.registration.value;
     data.seats = parseInt(form.seats.value);
     console.log(data)
-    fetch("http://127.0.0.1:5000/api/v2/cars", {
+    fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/cars", {
         method: "POST",
         headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"},
         body: JSON.stringify(data)
@@ -400,7 +400,7 @@ function update_car(event){
     data.registration = form.registration.value
     data.seats = parseInt(form.seats.value)
 
-    fetch("http://127.0.0.1:5000/api/v2/cars", {
+    fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/cars", {
         method: "PUT",
         headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"},
         body: JSON.stringify(data)
@@ -424,7 +424,7 @@ function update_user(event) {
     data.email = form.email.value
     data.phone_number = form.phone_number.value
 
-    fetch("http://127.0.0.1:5000/api/v2/users", {
+    fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/users", {
         method: "PUT",
         headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"},
         body: JSON.stringify(data)
@@ -444,7 +444,7 @@ function delete_ride(event) {
     let ride_id = ride.getAttribute("data-id")
     console.log(ride_id)
 
-    fetch("http://127.0.0.1:5000/api/v2/rides/"+ride_id, {
+    fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/rides/"+ride_id, {
         method: "DELETE",
         headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"},
     })
@@ -477,7 +477,7 @@ function update_ride(event) {
     data.price = parseInt(form.price.value);
     console.log(data)
 
-    fetch("http://127.0.0.1:5000/api/v2/rides/"+id, {
+    fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/rides/"+id, {
         method: "PUT",
         headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"},
         body: JSON.stringify(data)

@@ -103,7 +103,7 @@ function show_request_modal(event) {
     let ride_id = event.target.getAttribute('data-id');
     let token = localStorage.getItem("access_token");
     console.log(document.getElementsByClassName('request__items').textContent);
-    fetch("http://127.0.0.1:5000/api/v2/rides/"+ride_id+"/requests", {
+    fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/rides/"+ride_id+"/requests", {
         headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"}
     })
     .then((res) => {
@@ -156,7 +156,7 @@ function respond_to_ride(event) {
     console.log(request_id)
     console.log(ride_id)
     let response = event.target.value
-    fetch("http://127.0.0.1:5000/api/v2/rides/"+ride_id+"/requests/"+request_id, {
+    fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/rides/"+ride_id+"/requests/"+request_id, {
         method: "PUT",
         headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"},
         body: JSON.stringify({'status': response})
