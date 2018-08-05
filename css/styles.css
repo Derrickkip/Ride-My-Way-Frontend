@@ -736,7 +736,8 @@ tr:last-child {
     height: 300px;
 }
 
-#message {
+#message,
+#modalmessage {
     background-color: rgba(255,0,0,0.7);
     color: white;
     padding: 1px;

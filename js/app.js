@@ -5,6 +5,7 @@ if (signupform) {
 }
 
 const alert = document.querySelector(".alert");
+const alertmodal = document.querySelector(".alertmodal");
 
 function signup(event) {
     event.preventDefault();
@@ -489,3 +490,4 @@ function update_ride(event) {
     })
 
 }
+
