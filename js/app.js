@@ -80,7 +80,7 @@ function login(event) {
 
 }
 
-if (document.location.contains("rides.html")) {
+if (window.location.pathname.endsWith("rides.html")) {
     fetch("http:127.0.0.1:5000/api/v2/rides")
     .then((res) => {
         res.json().then((data) => {
@@ -162,7 +162,7 @@ function view_details(event) {
     })
 }
 
-if (document.location.contains("ride_details.html")) {
+if (window.location.pathname.endsWith("ride_details.html")) {
     document.getElementById("from").textContent = localStorage.getItem("origin");
     document.getElementById("destination").textContent = localStorage.getItem("destination");
     document.getElementById("date_of_ride").textContent = localStorage.getItem("date_of_ride");
@@ -247,7 +247,7 @@ function offer_ride(event) {
     })
 }
 
-if (document.location.contains("profile.html")) {
+if (window.location.pathname.endsWith("profile.html")) {
     let token = localStorage.getItem("access_token")
     fetch("http://127.0.0.1:5000/api/v2/cars", {
         headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"}
@@ -307,7 +307,7 @@ if (document.location.contains("profile.html")) {
     form_update_user.addEventListener('submit', update_user)
 }
 
-if (document.location.contains('rides_offered.html')) {
+if (window.location.pathname.endsWith('rides_offered.html')) {
     let token = localStorage.getItem("access_token")
     fetch("http://127.0.0.1:5000/api/v2/user/rides", {
         headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"}
