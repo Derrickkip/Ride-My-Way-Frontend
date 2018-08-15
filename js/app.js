@@ -80,7 +80,7 @@ function login(event) {
 
 }
 
-if (document.URL.contains("rides.html")) {
+if (window.location.pathname.endsWith("rides.html")) {
     fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/rides")
     .then((res) => {
         res.json().then((data) => {
@@ -162,7 +162,7 @@ function view_details(event) {
     })
 }
 
-if (document.URL.contains("ride_details.html")) {
+if (window.location.pathname.endsWith("ride_details.html")) {
     document.getElementById("from").textContent = localStorage.getItem("origin");
     document.getElementById("destination").textContent = localStorage.getItem("destination");
     document.getElementById("date_of_ride").textContent = localStorage.getItem("date_of_ride");
@@ -180,7 +180,8 @@ if (document.URL.contains("ride_details.html")) {
     })
 }
 
-function request_ride() {
+function request_ride(event) {
+    event.preventDefault()
     let token = localStorage.getItem("access_token")
     fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/rides/"+localStorage.getItem("id")+"/requests", {
         method: "POST",
@@ -247,7 +248,7 @@ function offer_ride(event) {
     })
 }
 
-if (document.URL.contains("profile.html")) {
+if (window.location.pathname.endsWith("profile.html")) {
     let token = localStorage.getItem("access_token")
     fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/cars", {
         headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"}
@@ -307,7 +308,7 @@ if (document.URL.contains("profile.html")) {
     form_update_user.addEventListener('submit', update_user)
 }
 
-if (document.URL.contains('rides_offered.html')) {
+if (window.location.pathname.endsWith('rides_offered.html')) {
     let token = localStorage.getItem("access_token")
     fetch("https://derrick-ride-my-way.herokuapp.com/api/v2/user/rides", {
         headers: {"Authorization": "Bearer "+ token, "Content-type": "application/json", "Accept": "application/json"}
