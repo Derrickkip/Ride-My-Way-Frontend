@@ -180,7 +180,8 @@ if (window.location.pathname.endsWith("ride_details.html")) {
     })
 }
 
-function request_ride() {
+function request_ride(event) {
+    event.preventDefault()
     let token = localStorage.getItem("access_token")
     fetch("http:127.0.0.1:5000/api/v2/rides/"+localStorage.getItem("id")+"/requests", {
         method: "POST",
